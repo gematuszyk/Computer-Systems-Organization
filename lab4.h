@@ -36,4 +36,6 @@ int runcommand(char** cline, int where);
 
 void handler(int n);
 
+void childhandler(sig);
+
 #endif 
