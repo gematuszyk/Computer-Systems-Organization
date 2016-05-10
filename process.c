@@ -8,7 +8,7 @@ int process(void)
 {
     char *arg[MAXARG + 1];  /* pointer array for runcommand */
     int toktype;            /* type of token in command */
-    int narg ;              /* number of arguments so far */
+    int narg = 0;           /* number of arguments so far */
     int type;               /* type = FOREGROUND or BACKGROUND */
 
     signal(SIGINT, handler);
@@ -36,13 +36,13 @@ int process(void)
                 {
                     arg[narg] = 0;
                     runcommand(arg,type);
-                    narg = 0;
                 }
 
                 if(toktype == EOL)
                 {
                     return;   
                 }
+                narg = 0;
                 
                 break;
         }
