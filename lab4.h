@@ -34,4 +34,6 @@ int gettok(char** outptr);
 
 int runcommand(char** cline, int where);
 
+void handler(int n);
+
 #endif 
