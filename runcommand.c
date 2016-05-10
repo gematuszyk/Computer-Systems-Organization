@@ -1,7 +1,18 @@
 #include "lab4.h"
 
-void childhandler(sig) {
+void childhandler() {
+        
+        pid_t pid1;
+        int status1;
     
+        while(1) {
+            pid1 = waitpid(pid1,&status1,WNOHONG);
+            if(pid1 == 0) {
+                return;
+            }else if(pid == -1) {
+                return;
+            }
+        }
 }
 
 // Execute a command with optional wait
@@ -38,7 +49,6 @@ int runcommand(char** cline, int where)
                 exit(1);
         }
     }
-    waitpid(pid,&status,WNOHONG);
     // Code for parent
     // If background process print pid and exit program is running in the background
     if(where == BACKGROUND)
