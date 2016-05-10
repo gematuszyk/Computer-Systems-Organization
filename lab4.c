@@ -18,4 +18,5 @@ int main()
 
 //Bug fix 4:  At the top of the process.c file I added a handler function to catch the signal when SIGINT (Ctrl + C) was sent from the keyboard.  On line 14 I added the signal call for if SIGNIT or '^C' was inputted, it would send the signal to the handler function outside of the process function.
 
-//Bug fix 5:  In the runcommand.c file of code 'if (waitpid(pid,&status,0) == -1)' is waiting for a specific child process to exit and if it has exited it will equal -1.  To reap the background processes, in this if statement I added this line of code, waitpid(-1,&status,WNOHANG), which will reap any child process that have been exited but doesn't wait if none of them have exited. Using WHOHANG allows you to see if there are any corpses to be collected without causing the process to stop waiting for a corpse.
+//Bug fix 5:  In the runcommand.c file to fix the bug I sent a SIGCHLD to the childhandler function when a child process stops or terminates and then used the command, waitpid(pid1,&status1,WNOHANG) which reap any child process that has been exited but doesn't wait if none of them have been exited.  Using WNOHANG allows you to see if there are any corpses to be collected without causing the process to stop waiting for a corpse.
+
