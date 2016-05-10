@@ -1,5 +1,8 @@
 #include "lab4.h"
 
+void handler(int n) {
+    //
+}
 /* Shell input line */
 int process(void)
 {
@@ -7,6 +10,8 @@ int process(void)
     int toktype;            /* type of token in command */
     int narg ;              /* number of arguments so far */
     int type;               /* type = FOREGROUND or BACKGROUND */
+
+    signal(SIGINT, handler);
 
     while (1) 
     {
@@ -31,14 +36,13 @@ int process(void)
                 {
                     arg[narg] = 0;
                     runcommand(arg,type);
+                    narg = 0;
                 }
 
                 if(toktype == EOL)
                 {
                     return;   
                 }
-
-                narg = 0;
                 
                 break;
         }
