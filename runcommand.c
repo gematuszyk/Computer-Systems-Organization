@@ -1,6 +1,6 @@
 #include "lab4.h"
 
-void handler(sig) {
+void childhandler(sig) {
     
 }
 
@@ -11,7 +11,7 @@ int runcommand(char** cline, int where)
     int status;
     char* path;
 `
-    signal(SIGCHLD, handler);
+    signal(SIGCHLD, childhandler);
 
     if(strcmp(cline[0], "exit")==0) {
         exit(0);
