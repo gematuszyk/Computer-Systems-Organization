@@ -1,11 +1,17 @@
 #include "lab4.h"
 
+void handler(sig) {
+    
+}
+
 // Execute a command with optional wait
 int runcommand(char** cline, int where)
 {
     pid_t pid;
     int status;
     char* path;
+`
+    signal(SIGCHLD, handler);
 
     if(strcmp(cline[0], "exit")==0) {
         exit(0);
@@ -32,6 +38,7 @@ int runcommand(char** cline, int where)
                 exit(1);
         }
     }
+    waitpid(pid,&status,WNOHONG);
     // Code for parent
     // If background process print pid and exit program is running in the background
     if(where == BACKGROUND)
@@ -43,7 +50,6 @@ int runcommand(char** cline, int where)
     // Wait until process pid exits
     if (waitpid(pid,&status,0) == -1) 
     {
-        waitpid(pid,&status,WNOHONG);
         return -1;
     } 
     else 
